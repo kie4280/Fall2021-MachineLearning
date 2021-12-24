@@ -1,3 +1,5 @@
 test.json*
 train.json*
 my_model*
+test_result.csv
+*.log
