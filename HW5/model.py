@@ -34,11 +34,12 @@ class MLP:
     def __init__(self, input_shape, load_model=False) -> None:
         data_in = keras.Input(shape=(input_shape, ))
         x = data_in
-        x = keras.layers.Dense(200, activation='relu')(x)
         x = keras.layers.Dropout(0.2)(x)
+        x = keras.layers.Dense(400, activation='relu')(x)
+        x = keras.layers.Dropout(0.5)(x)
 
         x = keras.layers.Dense(200, activation='relu')(x)
-        x = keras.layers.Dropout(0.2)(x)
+        x = keras.layers.Dropout(0.5)(x)
         x = keras.layers.Dense(100, activation='relu')(x)
         x = keras.layers.Dense(20, activation='softmax')(x)
         if os.path.exists(model_save_ + "my_model") and load_model:
@@ -55,7 +56,7 @@ class MLP:
                            metrics=[keras.metrics.CategoricalAccuracy(), keras.metrics.Precision()])
 
         history = self.model.fit(
-            X, y, batch_size=32,  epochs=3, validation_split=0.1)
+            X, y, batch_size=32, epochs=8, validation_split=0.1)
         pass
 
     def forward(self, X):
