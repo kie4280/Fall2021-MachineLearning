@@ -1,3 +1,5 @@
+# preprocessing and model construction
+
 from scipy.sparse import data
 import tensorflow as tf
 from tensorflow import keras
@@ -6,12 +8,14 @@ from sklearn.preprocessing import MultiLabelBinarizer, OneHotEncoder, LabelBinar
 import os
 import shutil
 import numpy as np
+from sklearn.utils import shuffle
 
-save_path = "/kaggle/working/"
-input_path = "/kaggle/input/ml-hw5/"
-model_save_ = "/kaggle/input/notebook-ml-hw5/"
-# save_path = ""
-# input_path = ""
+# save_path = "/kaggle/working/"
+# input_path = "/kaggle/input/ml-hw5/"
+# model_save_ = "/kaggle/input/notebook-ml-hw5/"
+save_path = ""
+input_path = ""
+model_save_ = ""
 
 
 training_set = pd.read_json(input_path + "train.json")
@@ -25,9 +29,9 @@ mlb = MultiLabelBinarizer()
 X_train: np.ndarray = mlb.fit_transform(training_set["ingredients"])
 y_train: np.ndarray = oh.fit_transform(
     np.array(training_set["cuisine"]).reshape(-1, 1))
+X_train, y_train = shuffle(X_train, y_train)
 
 X_test = mlb.transform(validation_set["ingredients"])
-print(X_train.shape)
 
 
 class MLP:
@@ -37,49 +41,39 @@ class MLP:
         x = keras.layers.Dropout(0.2)(x)
         x = keras.layers.Dense(400, activation='relu')(x)
         x = keras.layers.Dropout(0.5)(x)
-
-        x = keras.layers.Dense(200, activation='relu')(x)
-        x = keras.layers.Dropout(0.5)(x)
         x = keras.layers.Dense(100, activation='relu')(x)
         x = keras.layers.Dense(20, activation='softmax')(x)
         if os.path.exists(model_save_ + "my_model") and load_model:
-
             print("model exists!")
-            self.model = keras.models.load_model(model_save_ + "my_model")
+            self.model = keras.models.load_model(model_save_ + "my_model") # load saved model
         else:
-            self.model = keras.Model(inputs=data_in, outputs=x)
+            self.model = keras.Model(inputs=data_in, outputs=x) # construct model
 
-    def train(self, X, y):
-
+    def train(self, X, y, val_split = 0.1):
         self.model.compile(optimizer=keras.optimizers.Adam(learning_rate=0.001),
                            loss=keras.losses.CategoricalCrossentropy(),
-                           metrics=[keras.metrics.CategoricalAccuracy(), keras.metrics.Precision()])
+                           metrics=[keras.metrics.CategoricalAccuracy(), keras.metrics.Precision()]) # compile model
 
         history = self.model.fit(
-            X, y, batch_size=32, epochs=8, validation_split=0.1)
-        pass
+            X, y, batch_size=32, epochs=8, validation_split=val_split) # change the validation split when we want to submit to the competition
 
     def forward(self, X):
-
         y = self.model.predict(X)
         return y
 
-    def test(self, X_test, y_test):
-        res = self.model.evaluate(X_test, y_test)
-        print(res)
-
 
 m = MLP(X_train.shape[1], load_model=False)
-# print(m.model.summary())
 m.train(X_train, y_train)
-m.model.save(save_path + "my_model")
-y_pred = m.forward(X_test)
-y_pred = oh.inverse_transform(y_pred, threshold=0.5)
+m.model.save(save_path + "my_model") # save weights
+y_pred = m.forward(X_test) # inference
+y_pred = oh.inverse_transform(y_pred, threshold=0.5) # get back labels
+
+# construct submission csv
 ss = pd.Series(y_pred.squeeze())
 outp = pd.DataFrame(columns=["id", "Category"])
 outp["id"] = validation_set["id"]
 outp["Category"] = ss
-# print(outp.head(20).to_csv(index=None))
 
+# save csv
 with open(save_path + "test_result.csv", 'w+') as f:
     f.write(outp.to_csv(index=None))
