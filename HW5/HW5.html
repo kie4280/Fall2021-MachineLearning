@@ -14083,6 +14083,12 @@ a.anchor-link {
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Model-selection">Model selection<a class="anchor-link" href="#Model-selection">&#182;</a></h1><p>I use a model with two hidden layers. Between the hidden layers I also added dropout layers, to increase the robustness of the model. I use the cross entropy loss for the loss function. Training was done for 3 epochs using the Adam optimizer with learning rate 0.001. Futher training will result in overfitting of the model, as seen by the drop in validation accuracy.</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
@@ -14170,7 +14176,7 @@ a.anchor-link {
 <span class="n">m1</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">load_model</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">tr_x</span><span class="p">,</span> <span class="n">te_x</span><span class="p">,</span> <span class="n">tr_y</span><span class="p">,</span> <span class="n">te_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="c1"># m1.train(tr_x, tr_y, 3, 0.0)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">tr_x</span><span class="p">,</span> <span class="n">tr_y</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">te_x</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">oh</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 <span class="n">te_y</span> <span class="o">=</span> <span class="n">oh</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">te_y</span><span class="p">)</span>
@@ -14197,6 +14203,23 @@ a.anchor-link {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Epoch 1/3
+652/652 [==============================] - 42s 61ms/step - loss: 1.8265 - categorical_accuracy: 0.4759 - precision: 0.7867
+Epoch 2/3
+652/652 [==============================] - 38s 58ms/step - loss: 0.8545 - categorical_accuracy: 0.7443 - precision: 0.8577
+Epoch 3/3
+652/652 [==============================] - 45s 68ms/step - loss: 0.6976 - categorical_accuracy: 0.7903 - precision: 0.8794
+</pre>
+</div>
+</div>
 
 <div class="jp-OutputArea-child">
 
@@ -14249,463 +14272,463 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>brazilian (true)</th>
-      <td>17</td>
+      <td>47</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1</td>
       <td>4</td>
       <td>1</td>
-      <td>1</td>
-      <td>20</td>
-      <td>8</td>
-      <td>28</td>
+      <td>3</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>27</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
       <td>4</td>
       <td>2</td>
-      <td>3</td>
+      <td>2</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>british (true)</th>
-      <td>22</td>
-      <td>0</td>
-      <td>9</td>
-      <td>2</td>
-      <td>10</td>
-      <td>2</td>
-      <td>2</td>
-      <td>34</td>
-      <td>19</td>
-      <td>72</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
       <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>4</td>
-      <td>7</td>
+      <td>59</td>
       <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>31</td>
+      <td>2</td>
+      <td>5</td>
+      <td>21</td>
+      <td>11</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>28</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>cajun_creole (true)</th>
-      <td>56</td>
       <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>15</td>
-      <td>12</td>
-      <td>3</td>
-      <td>45</td>
-      <td>54</td>
-      <td>91</td>
       <td>0</td>
+      <td>259</td>
+      <td>1</td>
+      <td>1</td>
+      <td>19</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>14</td>
+      <td>2</td>
       <td>0</td>
       <td>1</td>
-      <td>4</td>
+      <td>11</td>
+      <td>0</td>
+      <td>1</td>
+      <td>37</td>
       <td>2</td>
-      <td>2</td>
-      <td>5</td>
-      <td>13</td>
-      <td>18</td>
-      <td>4</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>chinese (true)</th>
-      <td>64</td>
       <td>0</td>
-      <td>22</td>
+      <td>1</td>
       <td>2</td>
-      <td>23</td>
-      <td>11</td>
-      <td>5</td>
-      <td>56</td>
-      <td>90</td>
-      <td>224</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>15</td>
+      <td>504</td>
       <td>1</td>
       <td>3</td>
-      <td>13</td>
-      <td>34</td>
-      <td>13</td>
-      <td>13</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>15</td>
+      <td>6</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>17</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>filipino (true)</th>
-      <td>25</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>13</td>
-      <td>2</td>
-      <td>1</td>
-      <td>25</td>
-      <td>17</td>
-      <td>56</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
       <td>1</td>
       <td>1</td>
-      <td>16</td>
-      <td>5</td>
+      <td>0</td>
+      <td>19</td>
+      <td>106</td>
       <td>4</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7</td>
+      <td>3</td>
+      <td>12</td>
+      <td>8</td>
     </tr>
     <tr>
       <th>french (true)</th>
-      <td>67</td>
-      <td>0</td>
-      <td>12</td>
-      <td>8</td>
-      <td>39</td>
-      <td>10</td>
-      <td>6</td>
-      <td>78</td>
-      <td>77</td>
-      <td>165</td>
-      <td>0</td>
       <td>0</td>
       <td>4</td>
-      <td>17</td>
+      <td>9</td>
+      <td>2</td>
+      <td>0</td>
+      <td>404</td>
+      <td>6</td>
+      <td>4</td>
       <td>5</td>
+      <td>105</td>
+      <td>1</td>
       <td>5</td>
-      <td>7</td>
-      <td>43</td>
-      <td>26</td>
-      <td>15</td>
+      <td>0</td>
+      <td>6</td>
+      <td>3</td>
+      <td>2</td>
+      <td>33</td>
+      <td>9</td>
+      <td>1</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>greek (true)</th>
-      <td>31</td>
       <td>0</td>
-      <td>7</td>
       <td>0</td>
-      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>185</td>
+      <td>1</td>
+      <td>0</td>
+      <td>46</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>2</td>
       <td>3</td>
-      <td>23</td>
-      <td>53</td>
-      <td>42</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>19</td>
-      <td>0</td>
-      <td>4</td>
-      <td>4</td>
-      <td>21</td>
-      <td>6</td>
-      <td>8</td>
     </tr>
     <tr>
       <th>indian (true)</th>
-      <td>67</td>
-      <td>0</td>
-      <td>5</td>
-      <td>8</td>
-      <td>35</td>
-      <td>21</td>
-      <td>19</td>
-      <td>91</td>
-      <td>93</td>
-      <td>208</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>7</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
       <td>2</td>
-      <td>5</td>
-      <td>5</td>
-      <td>63</td>
-      <td>20</td>
-      <td>23</td>
+      <td>2</td>
+      <td>621</td>
+      <td>0</td>
+      <td>12</td>
+      <td>3</td>
+      <td>7</td>
+      <td>0</td>
+      <td>9</td>
+      <td>10</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>8</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>irish (true)</th>
-      <td>7</td>
       <td>0</td>
-      <td>11</td>
+      <td>17</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>24</td>
       <td>3</td>
-      <td>10</td>
-      <td>4</td>
-      <td>5</td>
-      <td>20</td>
-      <td>15</td>
-      <td>42</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>6</td>
-      <td>0</td>
       <td>1</td>
+      <td>67</td>
+      <td>10</td>
       <td>2</td>
-      <td>7</td>
-      <td>5</td>
-      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>26</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>italian (true)</th>
-      <td>283</td>
+      <td>0</td>
       <td>1</td>
-      <td>53</td>
-      <td>16</td>
-      <td>84</td>
-      <td>35</td>
-      <td>12</td>
-      <td>216</td>
-      <td>307</td>
-      <td>393</td>
+      <td>11</td>
+      <td>2</td>
       <td>0</td>
+      <td>124</td>
+      <td>40</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1527</td>
       <td>0</td>
-      <td>7</td>
-      <td>81</td>
-      <td>14</td>
-      <td>10</td>
-      <td>28</td>
-      <td>102</td>
-      <td>75</td>
+      <td>1</td>
+      <td>0</td>
+      <td>19</td>
+      <td>2</td>
+      <td>0</td>
       <td>34</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>jamaican (true)</th>
-      <td>16</td>
-      <td>0</td>
       <td>2</td>
       <td>0</td>
-      <td>10</td>
-      <td>5</td>
-      <td>1</td>
-      <td>10</td>
-      <td>16</td>
-      <td>54</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>7</td>
       <td>1</td>
       <td>4</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>2</td>
+      <td>85</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>japanese (true)</th>
-      <td>38</td>
       <td>0</td>
-      <td>6</td>
-      <td>2</td>
-      <td>24</td>
-      <td>14</td>
+      <td>0</td>
       <td>1</td>
       <td>34</td>
-      <td>60</td>
-      <td>110</td>
       <td>0</td>
+      <td>6</td>
+      <td>1</td>
+      <td>20</td>
       <td>1</td>
       <td>2</td>
-      <td>9</td>
       <td>2</td>
-      <td>4</td>
+      <td>239</td>
       <td>1</td>
-      <td>15</td>
-      <td>8</td>
-      <td>12</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>10</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>korean (true)</th>
-      <td>22</td>
       <td>0</td>
-      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>41</td>
       <td>2</td>
-      <td>22</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>15</td>
+      <td>141</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
       <td>2</td>
-      <td>18</td>
-      <td>33</td>
-      <td>63</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>5</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>11</td>
-      <td>4</td>
-      <td>5</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>mexican (true)</th>
-      <td>288</td>
+      <td>4</td>
       <td>0</td>
-      <td>34</td>
-      <td>9</td>
-      <td>67</td>
-      <td>40</td>
       <td>6</td>
-      <td>165</td>
-      <td>238</td>
-      <td>408</td>
+      <td>3</td>
+      <td>4</td>
+      <td>16</td>
+      <td>2</td>
+      <td>6</td>
+      <td>3</td>
+      <td>26</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>4</td>
-      <td>37</td>
-      <td>19</td>
-      <td>15</td>
-      <td>14</td>
-      <td>47</td>
-      <td>44</td>
-      <td>37</td>
+      <td>1315</td>
+      <td>1</td>
+      <td>1</td>
+      <td>27</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>moroccan (true)</th>
-      <td>30</td>
       <td>0</td>
-      <td>8</td>
-      <td>6</td>
-      <td>9</td>
-      <td>5</td>
-      <td>1</td>
-      <td>20</td>
-      <td>36</td>
-      <td>44</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>10</td>
+      <td>16</td>
       <td>0</td>
-      <td>8</td>
+      <td>10</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>145</td>
       <td>0</td>
       <td>4</td>
-      <td>12</td>
+      <td>2</td>
       <td>1</td>
-      <td>5</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>russian (true)</th>
-      <td>10</td>
-      <td>0</td>
-      <td>7</td>
-      <td>1</td>
-      <td>5</td>
-      <td>1</td>
-      <td>1</td>
-      <td>12</td>
-      <td>6</td>
-      <td>49</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
       <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>21</td>
+      <td>5</td>
+      <td>5</td>
       <td>4</td>
-      <td>4</td>
+      <td>13</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>27</td>
+      <td>11</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>southern_us (true)</th>
-      <td>146</td>
       <td>0</td>
-      <td>41</td>
-      <td>7</td>
-      <td>52</td>
-      <td>26</td>
-      <td>18</td>
-      <td>95</td>
-      <td>105</td>
-      <td>357</td>
-      <td>0</td>
-      <td>1</td>
+      <td>5</td>
+      <td>46</td>
+      <td>9</td>
       <td>2</td>
-      <td>22</td>
-      <td>4</td>
-      <td>4</td>
-      <td>11</td>
+      <td>39</td>
+      <td>10</td>
+      <td>9</td>
+      <td>6</td>
       <td>42</td>
-      <td>32</td>
-      <td>15</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>48</td>
+      <td>2</td>
+      <td>2</td>
+      <td>741</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>spanish (true)</th>
-      <td>31</td>
-      <td>0</td>
-      <td>7</td>
-      <td>2</td>
-      <td>9</td>
-      <td>5</td>
-      <td>1</td>
-      <td>32</td>
-      <td>27</td>
-      <td>62</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>13</td>
-      <td>2</td>
-      <td>0</td>
-      <td>1</td>
-      <td>19</td>
-      <td>7</td>
       <td>4</td>
+      <td>0</td>
+      <td>2</td>
+      <td>30</td>
+      <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>46</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>19</td>
+      <td>8</td>
+      <td>0</td>
+      <td>3</td>
+      <td>89</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>thai (true)</th>
-      <td>74</td>
-      <td>0</td>
-      <td>4</td>
       <td>1</td>
-      <td>16</td>
-      <td>10</td>
-      <td>1</td>
-      <td>40</td>
-      <td>59</td>
-      <td>118</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>4</td>
-      <td>4</td>
+      <td>23</td>
+      <td>0</td>
       <td>2</td>
+      <td>0</td>
+      <td>13</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
       <td>1</td>
+      <td>2</td>
       <td>7</td>
-      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>319</td>
       <td>7</td>
     </tr>
     <tr>
       <th>vietnamese (true)</th>
-      <td>21</td>
+      <td>4</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
-      <td>15</td>
-      <td>1</td>
+      <td>18</td>
+      <td>9</td>
       <td>2</td>
-      <td>15</td>
-      <td>28</td>
-      <td>78</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>2</td>
       <td>0</td>
+      <td>3</td>
       <td>0</td>
-      <td>3</td>
-      <td>3</td>
       <td>5</td>
-      <td>7</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>54</td>
+      <td>76</td>
     </tr>
   </tbody>
 </table>
@@ -14748,123 +14771,123 @@ a.anchor-link {
   <tbody>
     <tr>
       <th>brazilian</th>
-      <td>0.070189</td>
-      <td>0.186813</td>
-      <td>0.012928</td>
+      <td>0.778686</td>
+      <td>0.479592</td>
+      <td>0.770492</td>
     </tr>
     <tr>
       <th>british</th>
-      <td>0.070189</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.778686</td>
+      <td>0.339080</td>
+      <td>0.641304</td>
     </tr>
     <tr>
       <th>cajun_creole</th>
-      <td>0.070189</td>
-      <td>0.006079</td>
-      <td>0.008197</td>
+      <td>0.778686</td>
+      <td>0.742120</td>
+      <td>0.755102</td>
     </tr>
     <tr>
       <th>chinese</th>
-      <td>0.070189</td>
-      <td>0.003384</td>
-      <td>0.028169</td>
+      <td>0.778686</td>
+      <td>0.887324</td>
+      <td>0.754491</td>
     </tr>
     <tr>
       <th>filipino</th>
-      <td>0.070189</td>
-      <td>0.076023</td>
-      <td>0.027601</td>
+      <td>0.778686</td>
+      <td>0.585635</td>
+      <td>0.751773</td>
     </tr>
     <tr>
       <th>french</th>
-      <td>0.070189</td>
-      <td>0.017123</td>
-      <td>0.048077</td>
+      <td>0.778686</td>
+      <td>0.673333</td>
+      <td>0.546685</td>
     </tr>
     <tr>
       <th>greek</th>
-      <td>0.070189</td>
-      <td>0.012876</td>
-      <td>0.032967</td>
+      <td>0.778686</td>
+      <td>0.742972</td>
+      <td>0.675182</td>
     </tr>
     <tr>
       <th>indian</th>
-      <td>0.070189</td>
-      <td>0.135417</td>
-      <td>0.086749</td>
+      <td>0.778686</td>
+      <td>0.905248</td>
+      <td>0.858921</td>
     </tr>
     <tr>
       <th>irish</th>
-      <td>0.070189</td>
-      <td>0.107143</td>
-      <td>0.011186</td>
+      <td>0.778686</td>
+      <td>0.435065</td>
+      <td>0.587719</td>
     </tr>
     <tr>
       <th>italian</th>
-      <td>0.070189</td>
-      <td>0.224443</td>
-      <td>0.147523</td>
+      <td>0.778686</td>
+      <td>0.861738</td>
+      <td>0.811802</td>
     </tr>
     <tr>
       <th>jamaican</th>
-      <td>0.070189</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.778686</td>
+      <td>0.714286</td>
+      <td>0.841584</td>
     </tr>
     <tr>
       <th>japanese</th>
-      <td>0.070189</td>
-      <td>0.002915</td>
-      <td>0.333333</td>
+      <td>0.778686</td>
+      <td>0.744548</td>
+      <td>0.799331</td>
     </tr>
     <tr>
       <th>korean</th>
-      <td>0.070189</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.778686</td>
+      <td>0.674641</td>
+      <td>0.898089</td>
     </tr>
     <tr>
       <th>mexican</th>
-      <td>0.070189</td>
-      <td>0.025119</td>
-      <td>0.145098</td>
+      <td>0.778686</td>
+      <td>0.926709</td>
+      <td>0.879599</td>
     </tr>
     <tr>
       <th>moroccan</th>
-      <td>0.070189</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.778686</td>
+      <td>0.755208</td>
+      <td>0.819209</td>
     </tr>
     <tr>
       <th>russian</th>
-      <td>0.070189</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.778686</td>
+      <td>0.267327</td>
+      <td>0.750000</td>
     </tr>
     <tr>
       <th>southern_us</th>
-      <td>0.070189</td>
-      <td>0.011224</td>
-      <td>0.105769</td>
+      <td>0.778686</td>
+      <td>0.763918</td>
+      <td>0.752284</td>
     </tr>
     <tr>
       <th>spanish</th>
-      <td>0.070189</td>
-      <td>0.085202</td>
-      <td>0.040169</td>
+      <td>0.778686</td>
+      <td>0.412037</td>
+      <td>0.735537</td>
     </tr>
     <tr>
       <th>thai</th>
-      <td>0.070189</td>
-      <td>0.016901</td>
-      <td>0.020761</td>
+      <td>0.778686</td>
+      <td>0.843915</td>
+      <td>0.755924</td>
     </tr>
     <tr>
       <th>vietnamese</th>
-      <td>0.070189</td>
-      <td>0.038674</td>
-      <td>0.033493</td>
+      <td>0.778686</td>
+      <td>0.429379</td>
+      <td>0.730769</td>
     </tr>
   </tbody>
 </table>
@@ -14877,7 +14900,7 @@ a.anchor-link {
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
@@ -14885,7 +14908,7 @@ a.anchor-link {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># train to submit to kaggle</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">load_model</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># m2.train(X_train, y_train)</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">val_split</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="c1"># m2.model.save(save_path + &quot;my_model&quot;)  # save weights</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">mlb</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">validation_set</span><span class="p">[</span><span class="s2">&quot;ingredients&quot;</span><span class="p">])</span>
 
@@ -14908,32 +14931,11 @@ a.anchor-link {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/home/kie/hdd/miniconda3/envs/env1/lib/python3.9/site-packages/sklearn/preprocessing/_label.py:860: UserWarning: unknown class(es) [&#39;(14.5 oz.) diced tomatoes&#39;, &#39;2% milk shredded mozzarella cheese&#39;, &#39;33% less sodium smoked fully cooked ham&#39;, &#39;A Taste of Thai Rice Noodles&#39;, &#39;BACARDI® Mixers Margarita Mix&#39;, &#39;BACARDI® Superior&#39;, &#39;Barilla Linguine&#39;, &#39;Bertolli Tomato &amp; Basil Sauce&#39;, &#39;Better Than Bouillon Chicken Base&#39;, &#39;Betty Crocker™ oatmeal cookie mix&#39;, &#39;Budweiser&#39;, &#39;Challenge Butter&#39;, &#39;Cinnamon Toast Crunch Cereal&#39;, &#34;Cox&#39;s Orange Pippin&#34;, &#39;Crisco Pure Canola Oil&#39;, &#39;Crisco Pure Vegetable Oil&#39;, &#39;Crystal Farms Reduced Fat Shredded Marble Jack Cheese&#39;, &#39;Dole Seven Lettuces&#39;, &#39;Domino Confectioners Sugar&#39;, &#39;Doritos Tortilla Chips&#39;, &#39;Doubanjiang&#39;, &#39;Elmlea Single Light&#39;, &#39;Everglades Seasoning&#39;, &#39;Fisher Pecans&#39;, &#39;Flora Buttery&#39;, &#39;Franks Hot Sauce&#39;, &#39;Gebhardt Chili Powder&#39;, &#39;Guinness Lager&#39;, &#34;Hellmann&#39;s Dijonnaise Creamy Dijon Mustard&#34;, &#39;Hidden Valley® Original Ranch® Spicy Ranch Dressing&#39;, &#39;JOHNSONVILLE Hot &amp; Spicy Sausage Slices&#39;, &#39;Jagermeister Liqueur&#39;, &#39;Jameson Whiskey&#39;, &#39;Jif Creamy Peanut Butter&#39;, &#39;Johnsonville Andouille Fully Cooked Sausage&#39;, &#39;Jose Cuervo&#39;, &#39;Jose Cuervo Gold Tequila&#39;, &#39;KRAFT Mexican Style 2% Milk Finely Shredded Four Cheese&#39;, &#39;KRAFT Shredded Pepper Jack Cheese with a TOUCH OF PHILADELPHIA&#39;, &#39;Karo Corn Syrup&#39;, &#39;Kim Crawford Sauvignon Blanc&#39;, &#39;Klondike Rose red skin potato&#39;, &#39;Knorr Beef Stock Cubes&#39;, &#39;Knorr® Beef Bouillon&#39;, &#39;Knorr® Pasta Sides™ - Chicken flavor&#39;, &#39;Louisiana Cajun Seasoning&#39;, &#39;Margherita Pepperoni&#39;, &#39;Marshmallow Fluff&#39;, &#39;Mazola® Chicken Flavor Bouillon Powder&#39;, &#39;Meyer lemon peel&#39;, &#39;Mezzetta Sliced Greek Kalamata Olives&#39;, &#39;Mission Yellow Corn Tortillas&#39;, &#39;Mountain Dew Soda&#39;, &#39;Old El Paso Green Chiles&#39;, &#39;Ortega Tostada Shells&#39;, &#39;Pillsbury™ Crescent Recipe Creations® refrigerated seamless dough sheet&#39;, &#39;Pure Wesson Canola Oil&#39;, &#39;Pure Wesson Vegetable Oil&#39;, &#39;Rotel Diced Tomatoes &amp; Green Chilies&#39;, &#39;Skippy Creamy Peanut Butter&#39;, &#39;Soy Vay® Hoisin Garlic Marinade &amp; Sauce&#39;, &#39;Soy Vay® Veri Veri Teriyaki® Marinade &amp; Sauce&#39;, &#39;Spice Islands Bay Leaves&#39;, &#39;Spice Islands® Minced Garlic&#39;, &#39;Sugar in the Raw&#39;, &#39;TACO BELL® HOME ORIGINALS® Taco Seasoning Mix&#39;, &#39;Truvía® Baking Blend&#39;, &#39;V8 Juice&#39;, &#39;Wish-Bone Light Italian Dressing&#39;, &#39;Wish-Bone® Robusto Italian Dressing&#39;, &#39;Yoplait® Greek 100 blackberry pie yogurt&#39;, &#39;Yoplait® Greek 2% caramel yogurt&#39;, &#39;acai juice&#39;, &#39;adobo style seasoning&#39;, &#39;agave tequila&#39;, &#39;alaskan king salmon&#39;, &#39;almond oil&#39;, &#39;and cook drain pasta ziti&#39;, &#39;angled loofah&#39;, &#39;aonori&#39;, &#39;apple schnapps&#39;, &#39;artificial sweetener&#39;, &#39;asafetida (powder)&#39;, &#39;atlantic cod fillets&#39;, &#39;avocado dressing&#39;, &#39;banh pho rice noodles&#39;, &#39;barilla piccolini mini&#39;, &#39;barolo&#39;, &#39;bean curd stick&#39;, &#39;bear&#39;, &#39;beef stew seasoning mix&#39;, &#39;beluga lentil&#39;, &#39;bertolli organic tradit sauc&#39;, &#39;bhindi&#39;, &#39;biga&#39;, &#39;bird pepper&#39;, &#39;bittersweet baking chocolate&#39;, &#39;black bean stir fry sauce&#39;, &#39;black garlic&#39;, &#39;black grapes&#39;, &#39;blackberry brandy&#39;, &#39;blackcurrant syrup&#39;, &#39;blue curaçao&#39;, &#39;blueberri preserv&#39;, &#39;bone-in short ribs&#39;, &#39;boneless chops&#39;, &#39;boneless pork tenderloin&#39;, &#39;boneless skinless turkey breasts&#39;, &#39;borlotti&#39;, &#39;bran flakes&#39;, &#39;breakfast sausage links&#39;, &#39;brown beech mushrooms&#39;, &#39;brownie layer&#39;, &#39;buckwheat honey&#39;, &#39;buffalo&#39;, &#39;burdock&#39;, &#39;burger rolls&#39;, &#39;butter-flavored spray&#39;, &#39;buttermilk ranch dressing&#39;, &#39;bénédictine&#39;, &#39;cabernet&#39;, &#39;cake mix&#39;, &#39;calamari steak&#39;, &#39;candied citron peel&#39;, &#39;cannelloni&#39;, &#39;cannelloni shells&#39;, &#39;cardoons&#39;, &#39;cashew milk&#39;, &#39;center cut pork roast&#39;, &#39;champagne grapes&#39;, &#39;chapatti flour&#39;, &#39;cheese curds&#39;, &#39;chestnut flour&#39;, &#39;chestnut spread&#39;, &#39;chicken chorizo sausages&#39;, &#39;chicken flavored rice&#39;, &#39;chicken in water&#39;, &#39;chicken nugget&#39;, &#39;chicken salad&#39;, &#39;chile puree&#39;, &#39;chimichurri&#39;, &#39;chinese jujubes&#39;, &#39;chinese pepper&#39;, &#39;chinese radish&#39;, &#39;chocolate ice cream mix&#39;, &#39;chocolate milk&#39;, &#39;chuck short ribs&#39;, &#39;chunky tomatoes&#39;, &#39;cilantro pesto&#39;, &#39;citrus peel&#39;, &#39;citrus vinaigrette&#39;, &#39;clementine juice&#39;, &#39;clementine sections&#39;, &#39;color food orang&#39;, &#39;conger eel&#39;, &#39;cooki vanilla wafer&#39;, &#39;country gravy&#39;, &#39;crab sticks&#39;, &#39;creole spice mix&#39;, &#39;crumpet&#39;, &#39;crushed peppermint candy&#39;, &#39;crushed pistachio&#39;, &#39;crusty loaf&#39;, &#39;crème de framboise&#39;, &#39;cumberland sausage&#39;, &#39;curaçao&#39;, &#39;cured meats&#39;, &#39;cuttlefish&#39;, &#39;dark crème de cacao&#39;, &#39;dark lager&#39;, &#39;dark meat&#39;, &#39;dark turkey meat&#39;, &#34;devil&#39;s food cake mix&#34;, &#39;diced mushrooms&#39;, &#39;dip mix&#39;, &#39;do chua&#39;, &#39;double smoked bacon&#39;, &#39;double-dark soi sauc&#39;, &#39;dried apple rings&#39;, &#39;dried hibiscus blossoms&#39;, &#39;dried lavender flowers&#39;, &#39;dried mango&#39;, &#39;dried oysters&#39;, &#39;dried pineapple&#39;, &#39;dried prawns&#39;, &#39;dried rigatoni&#39;, &#39;dried shallots&#39;, &#39;dried strawberries&#39;, &#39;dry hard cider&#39;, &#39;duck sauce&#39;, &#39;dulong&#39;, &#39;eel&#39;, &#39;eggnog&#39;, &#39;english breakfast tea bags&#39;, &#39;fat free ground turkey breast&#39;, &#39;fat-trimmed beef flank steak&#39;, &#39;fedelini&#39;, &#39;fern&#39;, &#39;fiber one&#39;, &#39;fiddlehead ferns&#39;, &#39;filipino eggplant&#39;, &#39;fillet medallions&#39;, &#39;fillet of beef&#39;, &#39;filling&#39;, &#39;fine grind white cornmeal&#39;, &#39;flaked oats&#39;, &#39;flavored rice mix&#39;, &#39;flax egg&#39;, &#39;food gel&#39;, &#39;food paste color&#39;, &#39;free range chicken breasts&#39;, &#39;fresh cod&#39;, &#39;fresh flounder fillets&#39;, &#39;friselle&#39;, &#39;frozen sweetened raspberries&#39;, &#39;fudge cake mix&#39;, &#39;garbanzo bean flour&#39;, &#39;garland chrysanthemum&#39;, &#39;garlic naan&#39;, &#39;german mustard&#39;, &#39;gingersnap cookie crumbs&#39;, &#39;glucose syrup&#39;, &#39;gluten free barbecue sauce&#39;, &#39;gluten free vanilla extract&#39;, &#39;gluten-free oat&#39;, &#39;goat milk feta&#39;, &#39;goat s milk cheese&#39;, &#39;goose liver&#39;, &#39;grana&#39;, &#39;granular sucrolose sweetener&#39;, &#39;grape vine leaves&#39;, &#39;gravenstein apple&#39;, &#39;greek seasoning mix&#39;, &#39;green chard&#39;, &#39;ground hazelnuts&#39;, &#39;guanabana&#39;, &#39;hamachi&#39;, &#39;haricot beans&#39;, &#39;helix snails&#39;, &#39;herb cheese&#39;, &#39;herb dressing&#39;, &#39;hijiki&#39;, &#39;hillshire farms low fat sausage&#39;, &#39;hops&#39;, &#39;icing mix&#39;, &#39;indian flat bread&#39;, &#39;instant pudding mix&#39;, &#39;italian pizza crust&#39;, &#39;italian rolls&#39;, &#39;italian sauce&#39;, &#39;japanese pumpkin&#39;, &#39;japanese style bread crumbs&#39;, &#39;jelli strawberri&#39;, &#39;jerk rub seasoning&#39;, &#39;jimmies&#39;, &#39;kabuli channa&#39;, &#39;kampyo&#39;, &#39;kamut flour&#39;, &#39;katsuo dashi&#39;, &#39;kha&#39;, &#39;kim chee&#39;, &#39;king salmon&#39;, &#39;kippers&#39;, &#39;knorr cilantro minicub&#39;, &#39;knorr parslei minicub&#39;, &#39;knorr pasta side&#39;, &#39;knorr pasta side   cheesi cheddar&#39;, &#39;korean vermicelli&#39;, &#39;kosher wine&#39;, &#39;lamb cubes&#39;, &#39;lamb rib roast&#39;, &#39;lavender flowers&#39;, &#39;lavender honey&#39;, &#39;lean chuck roast&#39;, &#39;leek tops&#39;, &#39;leg of veal&#39;, &#39;lemon lime beverage&#39;, &#39;lemon olive oil&#39;, &#39;lemon pudding&#39;, &#39;licorice root&#39;, &#39;light whipping cream&#39;, &#39;liquid egg substitute&#39;, &#39;lo bok&#39;, &#39;long green&#39;, &#39;longan&#39;, &#39;low fat chunky mushroom pasta sauce&#39;, &#39;low fat tortilla chip&#39;, &#39;low sodium 96% fat free ham&#39;, &#39;low sodium canned chicken broth&#39;, &#39;low sodium chicken&#39;, &#39;low sodium jarred chicken soup base&#39;, &#39;low-fat crème fraîche&#39;, &#39;low-fat firm silken tofu&#39;, &#39;low-fat salad dressing&#39;, &#39;low-fat sharp cheddar cheese&#39;, &#39;low-fat soy milk&#39;, &#39;low-fat sweetened condensed milk&#39;, &#39;low-fat tartar sauce&#39;, &#39;low-fat vegetable primavera spaghetti sauce&#39;, &#39;macaroni and cheese dinner&#39;, &#39;madagascar bourbon vanilla extract&#39;, &#39;madeleine&#39;, &#39;malt&#39;, &#39;malted milk powder&#39;, &#39;maraschino&#39;, &#39;meat loaf mix&#39;, &#39;meat loaf mixture&#39;, &#39;medium potatoes&#39;, &#39;microgreens&#39;, &#39;milk chocolate kisses&#39;, &#39;milk chocolate pieces&#39;, &#39;mincemeat pie filling&#39;, &#39;mint chocolate chip ice cream&#39;, &#39;mole poblano&#39;, &#39;mooli&#39;, &#39;moose&#39;, &#39;morcilla&#39;, &#39;mousse&#39;, &#39;mushroom broth&#39;, &#39;myzithra&#39;, &#39;nama shoyu&#39;, &#39;nigari tofu&#39;, &#39;nonfat dried milk&#39;, &#39;nonfat half-and-half&#39;, &#39;ocean perch&#39;, &#39;orange glaze&#39;, &#39;organic buttermilk&#39;, &#39;organic granulated sugar&#39;, &#39;organic soy sauce&#39;, &#39;oriental radish&#39;, &#39;pancake batter&#39;, &#39;pancit&#39;, &#39;pasta wagon wheel&#39;, &#39;peach sorbet&#39;, &#39;peanut butter chips&#39;, &#39;peanut powder&#39;, &#39;peapods&#39;, &#39;pearl rice&#39;, &#39;pecan pie&#39;, &#39;pekin duck breast halves&#39;, &#39;peppermint&#39;, &#39;perch fillets&#39;, &#39;petits pois&#39;, &#39;pike&#39;, &#39;pink salt&#39;, &#39;pizza seasoning&#39;, &#39;plain soy yogurt&#39;, &#39;poi&#39;, &#39;pointed peppers&#39;, &#39;poppyseeds&#39;, &#39;pork loin rib chops&#39;, &#39;pork roll&#39;, &#39;pork sausage casing&#39;, &#39;pork shanks&#39;, &#39;pork tenderloin medallions&#39;, &#39;portuguese rolls&#39;, &#39;poured fondant&#39;, &#39;praline&#39;, &#39;prepared coleslaw&#39;, &#39;protein powder&#39;, &#39;prune juice&#39;, &#39;psyllium husks&#39;, &#39;puff pastry cups&#39;, &#39;pâte brisée&#39;, &#39;quick yeast&#39;, &#39;ranch-style seasoning&#39;, &#39;rape&#39;, &#39;raspberry juice&#39;, &#39;raspberry lambic&#39;, &#39;raspberry sherbet&#39;, &#39;raw milk&#39;, &#39;raw peeled prawns&#39;, &#39;red apples&#39;, &#39;red currants&#39;, &#39;red mullet&#39;, &#39;red quinoa&#39;, &#39;red velvet cake mix&#39;, &#39;redfish fillet&#39;, &#39;reduced sodium beef stock&#39;, &#39;reduced sodium kidney beans&#39;, &#39;reduced sodium refried beans&#39;, &#39;reduced sugar ketchup&#39;, &#39;refrigerated seamless crescent dough&#39;, &#39;roast pork seasoning mix&#39;, &#39;roasted ground cumin&#39;, &#39;rosemary needles&#39;, &#39;rotini pasta, cook and drain&#39;, &#39;rub seasoning&#39;, &#39;saba&#39;, &#39;sablefish&#39;, &#39;salt free herb seasoning&#39;, &#39;salted seaweed&#39;, &#39;saltine crumbs&#39;, &#39;samphire&#39;, &#39;savoy cabbage leaves&#39;, &#39;savoy spinach&#39;, &#39;schnapps&#39;, &#39;scrod&#39;, &#39;seafood base&#39;, &#39;semi sweet mini chocolate chips&#39;, &#39;shanghai bok choy&#39;, &#39;shank half&#39;, &#39;shark steak&#39;, &#39;shiromiso&#39;, &#39;shoulder roast&#39;, &#39;shredded American cheese&#39;, &#39;side pork&#39;, &#39;skinless boneless turkey breast halves&#39;, &#39;skinless flounder fillets&#39;, &#39;sliced meat&#39;, &#39;small potatoes&#39;, &#39;smithfield ham&#39;, &#39;smoked almonds&#39;, &#39;smoked hog jowl&#39;, &#39;smoked mozzarella&#39;, &#39;smoked rashers&#39;, &#39;smooth natural peanut butter&#39;, &#39;snow crab&#39;, &#39;sodium free chicken stock&#39;, &#39;soft margarine&#39;, &#39;soft-shell clams&#39;, &#39;solid white tuna in oil&#39;, &#39;sorghum molasses&#39;, &#39;soybean oil&#39;, &#39;sparkling sangria tradicional&#39;, &#39;spinach tortilla&#39;, &#39;spot prawns&#39;, &#39;standing rib roast&#39;, &#39;steel-cut oatmeal&#39;, &#39;stellette&#39;, &#39;stem ginger&#39;, &#39;stick butter&#39;, &#39;stir fry beef meat&#39;, &#39;straight bourbon whiskey&#39;, &#39;strained yogurt&#39;, &#39;strawberry syrup&#39;, &#39;strip loin steak&#39;, &#39;sugar cane juice&#39;, &#39;sugarcane juice&#39;, &#39;swanson beef broth&#39;, &#39;sweet &amp; sour stir fry sauce&#39;, &#39;sweet biscuit crumbs&#39;, &#39;sweetened red beans&#39;, &#39;swiss&#39;, &#39;table wine&#39;, &#39;tahini paste&#39;, &#39;tallow&#39;, &#39;tandoori masala mix&#39;, &#39;tart crust&#39;, &#39;tart filling&#39;, &#39;teff&#39;, &#39;thickeners&#39;, &#39;tofu sour cream&#39;, &#39;tomate verde&#39;, &#39;tongue&#39;, &#39;topside steak&#39;, &#39;treviso&#39;, &#39;tri-tip steak&#39;, &#39;triscuits&#39;, &#39;true cinnamon&#39;, &#39;tuong&#39;, &#39;turkey burger&#39;, &#39;turkey carcass&#39;, &#39;turkey salami&#39;, &#39;unsweetened baking chocolate&#39;, &#39;unsweetened dried coconut&#39;, &#39;unsweetened vanilla almond milk&#39;, &#39;v 8 juice&#39;, &#39;vanilla cream&#39;, &#39;vanilla frosting&#39;, &#39;vanilla low-fat frozen yogurt&#39;, &#39;vegetable gumbo mixture&#39;, &#39;vegetable soup&#39;, &#39;violets&#39;, &#39;warm buns&#39;, &#39;water chestnut powder&#39;, &#39;whipped dessert topping&#39;, &#39;white almond bark&#39;, &#39;white arborio rice&#39;, &#39;white bread crumbs&#39;, &#39;whole crab&#39;, &#39;whole grain English muffins&#39;, &#39;whole grain buns&#39;, &#39;whole grain roll&#39;, &#39;whole grain rotini&#39;, &#39;whole wheat berries&#39;, &#39;whole wheat bread cubes&#39;, &#39;whole wheat bread flour&#39;, &#39;whole wheat bread slices&#39;, &#39;whole wheat cereal&#39;, &#39;whole wheat crackers&#39;, &#39;whole wheat french bread&#39;, &#39;whole wheat peasant bread&#39;, &#39;whole wheat potato buns&#39;, &#39;whole wheat seasoned breadcrumbs&#39;, &#39;whole wheat spaghettini&#39;, &#39;wish bone red wine vinaigrett dress&#39;, &#39;wish-bone&#39;, &#39;wondra&#39;, &#39;wood mushrooms&#39;, &#39;xuxu&#39;] will be ignored
-  warnings.warn(&#39;unknown class(es) {0} will be ignored&#39;
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Kaggle-submission">Kaggle submission<a class="anchor-link" href="#Kaggle-submission">&#182;</a></h1><p><img src="kaggle.png" alt=""></p>
+<h1 id="Kaggle-submission">Kaggle submission<a class="anchor-link" href="#Kaggle-submission">&#182;</a></h1><p><img src="./kaggle.png" alt=""></p>
+<p>If not seen, see kaggle.png in zip</p>
 <h1 id="Comparison-&amp;-Conclusion">Comparison &amp; Conclusion<a class="anchor-link" href="#Comparison-&amp;-Conclusion">&#182;</a></h1><p>I find that if I use dropout layer, the validation performance will increase probably 5% in accuracy.</p>
 
 </div>
