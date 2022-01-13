@@ -33,20 +33,20 @@ def search(keyword: str, site: str, size: int = 1000):
     return titles
 
 
-# for i in sites_bait:
-#     ts = search("", i, 1000)
-#     with open("bait/{}.json".format(i), "w+") as f:
-#         print(ts)
-#         s = json.dumps(ts)
-#         f.write(s)
+for i in sites_bait:
+    ts = search("", i, 1000)
+    with open("bait/{}.json".format(i), "w+") as f:
+        print(ts)
+        s = json.dumps(ts)
+        f.write(s)
 
 
-# for i in sites_n_bait:
-#     ts = search("", i, 1000)
-#     with open("not_bait/{}.json".format(i), "w+") as f:
-#         print(ts)
-#         s = json.dumps(ts)
-#         f.write(s)
+for i in sites_n_bait:
+    ts = search("", i, 1000)
+    with open("not_bait/{}.json".format(i), "w+") as f:
+        print(ts)
+        s = json.dumps(ts)
+        f.write(s)
 
 bait = glob.glob("bait/*.json")
 n_bait = glob.glob("not_bait/*.json")
